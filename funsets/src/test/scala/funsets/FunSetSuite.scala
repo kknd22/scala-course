@@ -145,4 +145,13 @@ class FunSetSuite extends FunSuite {
       assert(!contains(m, 64), "new mapped doesn't have 8*8") 
     }
   }
+
+    test ("map test using List") {
+      val s: Set = ((x:Int) => List(1,3,4,5,7,1000).contains(x))
+      val r: Set = ((x:Int) => List(0,2,3,4,6,999).contains(x))
+      val m = map(s, ((x:Int) => x -1))
+      
+      printSet(m)
+      assert(m.toString == r.toString, "m should == r") 
+  }
 }

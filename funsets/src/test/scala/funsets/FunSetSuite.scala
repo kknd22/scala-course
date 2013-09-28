@@ -79,6 +79,12 @@ class FunSetSuite extends FunSuite {
     val s3 = singletonSet(3)
   }
 
+  trait TestSets2 {
+    val t1 = ((x: Int) => x > 0 && x < 10)
+    val t2 = ((x: Int) => x ==1 || x==3 || x==5 || x==7 || x==9)
+    val t3 = ((x: Int) => x ==2 || x==4 || x==6 || x==8)
+  }
+
   /**
    * This test is currently disabled (by using "ignore") because the method
    * "singletonSet" is not yet implemented and the test would fail.
@@ -86,7 +92,7 @@ class FunSetSuite extends FunSuite {
    * Once you finish your implementation of "singletonSet", exchange the
    * function "ignore" by "test".
    */
-  ignore("singletonSet(1) contains 1") {
+  test("singletonSet(1) contains 1") {
     
     /**
      * We create a new instance of the "TestSets" trait, this gives us access
@@ -101,12 +107,42 @@ class FunSetSuite extends FunSuite {
     }
   }
 
-  ignore("union contains all elements") {
+  test("union contains all elements") {
     new TestSets {
       val s = union(s1, s2)
       assert(contains(s, 1), "Union 1")
       assert(contains(s, 2), "Union 2")
       assert(!contains(s, 3), "Union 3")
+    }
+  }
+  
+  test ("intersect contains overlapped elements") {
+    new TestSets2 {
+      val s = intersect(t1, t2)
+      assert(contains(s, 3), "Intersect has 3") 
+      assert(!contains(s, 4), "Intersect not have 4") 
+    }
+  }
+
+  test ("forall test") {
+    new TestSets2 {
+      assert(!forall(t2, ((x:Int) => x % 2 == 0)), "t2 has at least one odd") 
+      assert(forall(t3, ((x:Int) => x % 2 == 0)), "t3 all even") 
+    }
+  }
+
+  test ("exsits test") {
+    new TestSets2 {
+      assert(!exists(t2, ((x:Int) => x % 2 == 0)), "t2 has no even") 
+      assert(exists(t3, ((x:Int) => x % 2 == 0)), "t3 has at least 1 even") 
+    }
+  }
+
+  test ("map test") {
+    new TestSets2 {
+      val m = map(t2, ((x:Int) => x * x))
+      assert(contains(m, 81), "new mapped has 9*9") 
+      assert(!contains(m, 64), "new mapped doesn't have 8*8") 
     }
   }
 }

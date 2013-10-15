@@ -19,6 +19,7 @@ project/plugins/project/
 
 #intellij
 */.idea/*
+*.iml
 
 #instruction to set up
 #http://stackoverflow.com/questions/15381294/how-to-initialize-a-new-scala-project-in-sbt-eclispe-and-github

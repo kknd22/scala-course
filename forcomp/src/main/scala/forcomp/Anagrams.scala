@@ -59,7 +59,7 @@ object Anagrams {
    *
    */
   lazy val dictionaryByOccurrences: Map[Occurrences, List[Word]] = {
-    dictionary.groupBy(wordOccurrences(_) )
+    dictionary groupBy wordOccurrences withDefaultValue(List())
 
   }
 
@@ -163,6 +163,18 @@ object Anagrams {
    *
    *  Note: There is only one anagram of an empty sentence.
    */
-  def sentenceAnagrams(sentence: Sentence): List[Sentence] = ???
+  def sentenceAnagrams(sentence: Sentence): List[Sentence] =  {
+    def occuranceAnagrams(occs: Occurrences): List[Sentence] = {
+      if (occs.isEmpty) List(List())
+      else {
+        for {
+          comb <- combinations(occs)
+          word <- dictionaryByOccurrences(comb)
+          rest <- occuranceAnagrams(subtract(occs, comb))
+        } yield  word::rest
+      }
+    }
+    occuranceAnagrams(sentenceOccurrences(sentence))
+  }
 
 }

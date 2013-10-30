@@ -34,7 +34,7 @@ object Anagrams {
    *  same character, and are represented as a lowercase character in the occurrence list.
    */
   def wordOccurrences(w: Word): Occurrences = {
-    w.toLowerCase.groupBy(x => x).map(e => (e._1, e._2.length)).toList.sortBy(x => x)
+    w.toLowerCase.groupBy(x => x).map(e => e._1 -> e._2.length).toList.sortBy(x => x._1)
   }
 
   /** Converts a sentence into its character occurrence list. */
@@ -95,7 +95,7 @@ object Anagrams {
       occ match {
         case Nil => acc
         case head::tail =>  {
-          val r1 = for {e <- acc; i <-(1 to head._2) } yield ((head._1, i)::e).sortBy(x => x)
+          val r1 = for {e <- acc; i <-(1 to head._2) } yield ((head._1-> i)::e).sortBy(x => x._1)
           val r2 = for (i <-(1 to head._2)) yield List((head._1, i))
           combinationsAcc(tail, acc:::r2.toList:::r1)
         }

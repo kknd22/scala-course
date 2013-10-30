@@ -12,7 +12,14 @@ s.foldLeft("")(_ + _)
 //val v = sentenceOccurrences(s)
 
 //val vv = s.groupBy(wordOccurrences(_))
-//combinations(List(('a', 2), ('b', 2), ('c', 2)))
+combinations(List(('a', 2), ('b', 2), ('c', 2)))
+
+
+
+
+
+
+
 
 //val l=List(('a', 2), ('b', 2))
 //val lm=l.toMap

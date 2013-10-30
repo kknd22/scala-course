@@ -7,19 +7,13 @@ val x = "abcbcc"
 val y ="xxxyyz"
 
 val z = "bbccca"
-val s = List(x, y, z)
+val s = List(x, z, y)
 s.foldLeft("")(_ + _)
-//val v = sentenceOccurrences(s)
+val v = sentenceOccurrences(s)
+
 
 //val vv = s.groupBy(wordOccurrences(_))
-combinations(List(('a', 2), ('b', 2), ('c', 2)))
-
-
-
-
-
-
-
+//combinations(List(('a', 2), ('b', 2), ('c', 2)))
 
 //val l=List(('a', 2), ('b', 2))
 //val lm=l.toMap
@@ -27,7 +21,7 @@ combinations(List(('a', 2), ('b', 2), ('c', 2)))
 //val ll=lm.toList
 //for {e <- l; i <-(1 to l.head._2) } yield (l.head._1, i)::l
 
-subtract(List(('a', 2), ('b', 1), ('c', 2)), List(('a', 1), ('b', 1), ('c', 2)))
+//subtract(List(('a', 2), ('b', 1), ('c', 2)), List(('a', 1), ('b', 1), ('c', 2)))
 
 
 

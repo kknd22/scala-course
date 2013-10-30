@@ -118,10 +118,10 @@ object Anagrams {
    *  and has no zero-entries.
    */
   def subtract(x: Occurrences, y: Occurrences): Occurrences = {
-    val xm = x.toMap
-    val ym= y.toMap
-    val reduced = for((k,v) <- xm) yield (k, v - ym.getOrElse(k, 0))
-    reduced.toList.filter(e => (e._2 != 0)).sortBy(_._1)
+    val ym= y.toMap.withDefaultValue(0)
+    //x.map( e => (e._1,  e._2 - ym(e._1)))
+    val reduced = x.map{ case (k,v)  => (k,  v - ym(k))}
+    reduced.filter(_._2 != 0).sortBy(_._1)
 
   }
 

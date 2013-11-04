@@ -1,16 +1,22 @@
-Vector("abc": _*)
-
+import streams.Bloxorz
 
 
 
 val level =
-  """------
-    |--ST--
-    |--oo--
-    |--oo--
-    |------""".stripMargin
+  """ooo-------
+    |oSoooo----
+    |ooooooooo-
+    |-ooooooooo
+    |-----ooToo
+    |------ooo-""".stripMargin
+
+
+
+
 
 
 
 Vector(level.split("\n").map(str => Vector(str: _*)): _*)
+
+
 
